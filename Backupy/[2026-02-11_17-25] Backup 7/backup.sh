@@ -16,7 +16,7 @@ echo "--- Startuje backup: $FOLDER_NAME ---"
 # Tworzenie folderu w repozytorium
 mkdir -p "$BACKUP_REPO_DIR/$FOLDER_NAME"
 
-# Kopiowanie Twojej strony i Twoich skryptów .sh
+# Kopiowanie strony i skryptów .sh
 cp -r $SOURCE_DIR/* "$BACKUP_REPO_DIR/$FOLDER_NAME/"
 cp $HOME/*.sh "$BACKUP_REPO_DIR/$FOLDER_NAME/" 2>/dev/null
 
