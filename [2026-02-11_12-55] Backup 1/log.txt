@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Dziennik Systemowy</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: monospace; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { border-bottom: 2px solid #00ff41; }
+        .back-link { color: #0f0f0f; background: #00ff41; padding: 5px 10px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link"><< POWRÓT</a>
+        <h1>[DZIENNIK_SYSTEMOWY]</h1>
+        <div id="content">Wczytywanie logów...</div>
+    </div>
+
+    <script>
+        fetch('logi_content.html')
+            .then(res => res.text())
+            .then(html => { document.getElementById('content').innerHTML = html; });
+    </script>
+</body>
+</html>
