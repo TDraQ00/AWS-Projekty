@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('Europe/Warsaw');
-// TWOJE HASŁO - ZMIEŃ JE NA JAKIE CHCESZ
+// Haslo
 $moje_haslo = "Sebuskot123";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
