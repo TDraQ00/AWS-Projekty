@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+<div id="guest-panel" style="display: none; background: #111; padding: 15px; border: 1px dashed #ff00ff; margin-bottom: 30px;">
+    <h3 style="color: #ff00ff; margin-top: 0;">Panel Gościa (Tylko dla wtajemniczonych)</h3>
+    <form action="dodaj.php" method="POST">
+        <input type="text" name="wiadomosc" placeholder="Twoja wiadomość..." 
+               style="width: 60%; background: #000; color: #fff; border: 1px solid #ff00ff; padding: 10px; margin-bottom: 10px;" required><br>
+        <input type="password" name="haslo" placeholder="Klucz dostępu" 
+               style="width: 30%; background: #000; color: #ff00ff; border: 1px solid #ff00ff; padding: 10px;" required>
+        <button type="submit" style="background: #ff00ff; color: #000; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer;">AUTORYZUJ I WYŚLIJ</button>
+    </form>
+</div>
+    <title>Dziennik Systemowy</title>
+    <style>
+        body { background: #0a0a0a; color: #00ff41; font-family: monospace; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        h1 { border-bottom: 2px solid #00ff41; }
+        .back-link { color: #0f0f0f; background: #00ff41; padding: 5px 10px; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link"><< POWRÓT</a>
+        <h1>[DZIENNIK_SYSTEMOWY]</h1>
+        <div id="content">Wczytywanie logów...</div>
+    </div>
+    <script>
+    // Dodajemy losowy numer (timestamp), żeby przeglądarka nie brała starej wersji z pamięci
+    const v = new Date().getTime(); 
+    fetch('logi_content.html?v=' + v)
+        .then(res => {
+            if (!res.ok) throw new Error('Problem z ładowaniem logów');
+            return res.text();
+        })
+        .then(html => {
+            document.getElementById('content').innerHTML = html;
+        })
+        .catch(err => {
+            document.getElementById('content').innerHTML = "<p style='color:red'>Błąd: " + err.message + "</p>";
+        });
+</script>
+<script>
+    // Sprawdzamy, czy w adresie URL jest ?vip=true
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('vip') === 'true') {
+        document.getElementById('guest-panel').style.display = 'block';
+    }
+</script>
+</body>
+</html>
